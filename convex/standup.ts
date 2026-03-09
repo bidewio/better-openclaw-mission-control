@@ -9,7 +9,7 @@ export const generateStandup = mutation({
 	},
 	handler: async (ctx, args) => {
 		const tenantId = await requireAuthTenantId(ctx);
-		const date = args.date || new Date().toISOString().split("T")[0];
+		const date = args.date ?? new Date().toISOString().split("T")[0]!;
 		const now = Date.now();
 
 		// Fetch agents

@@ -157,7 +157,7 @@ export default function FleetPage() {
 					<tbody>
 						{instances && instances.length > 0 ? (
 							instances.map((inst) => {
-								const cfg = STATUS_CONFIG[inst.status] ?? STATUS_CONFIG.offline;
+								const cfg = (STATUS_CONFIG[inst.status] ?? STATUS_CONFIG.offline)!;
 								return (
 									<tr key={inst._id} className="border-b border-border/10 hover:bg-secondary/20">
 										<td className="p-3">

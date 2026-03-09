@@ -66,9 +66,9 @@ export default function TokenDashboard() {
 	const toolChartData = useMemo(() => {
 		if (!toolUsage) return [];
 		return toolUsage.slice(0, 8).map((t) => ({
-			name: t.toolName.length > 12 ? t.toolName.slice(0, 12) + "..." : t.toolName,
+			name: t.tool.length > 12 ? t.tool.slice(0, 12) + "..." : t.tool,
 			count: t.count,
-			fullName: t.toolName,
+			fullName: t.tool,
 		}));
 	}, [toolUsage]);
 
@@ -77,8 +77,7 @@ export default function TokenDashboard() {
 		if (!costTimeline) return [];
 		return costTimeline.map((d) => ({
 			date: d.date,
-			cost: d.totalCostCents / 100,
-			events: d.eventCount,
+			cost: d.costCents / 100,
 		}));
 	}, [costTimeline]);
 
@@ -88,11 +87,11 @@ export default function TokenDashboard() {
 		// Group by approximate category
 		const categories = new Map<string, number>();
 		for (const t of toolUsage) {
-			const category = t.toolName.includes("read") || t.toolName.includes("Read")
+			const category = t.tool.includes("read") || t.tool.includes("Read")
 				? "Read Operations"
-				: t.toolName.includes("write") || t.toolName.includes("Write") || t.toolName.includes("Edit")
+				: t.tool.includes("write") || t.tool.includes("Write") || t.tool.includes("Edit")
 					? "Write Operations"
-					: t.toolName.includes("search") || t.toolName.includes("Grep") || t.toolName.includes("Glob")
+					: t.tool.includes("search") || t.tool.includes("Grep") || t.tool.includes("Glob")
 						? "Search Operations"
 						: "Other Tools";
 			categories.set(category, (categories.get(category) || 0) + t.count);
@@ -150,7 +149,7 @@ export default function TokenDashboard() {
 						/>
 						<MetricCard
 							label="Error Count"
-							value={formatNumber(metrics.errorCount)}
+							value={formatNumber(metrics.errors)}
 							icon={<IconChartBar size={18} />}
 							accent="text-destructive"
 						/>
@@ -195,7 +194,7 @@ export default function TokenDashboard() {
 												borderRadius: 8,
 												fontSize: 12,
 											}}
-											formatter={(value: number) => [`$${value.toFixed(2)}`, "Cost"]}
+											formatter={(value) => [`$${Number(value).toFixed(2)}`, "Cost"]}
 										/>
 										<Line
 											type="monotone"
@@ -235,16 +234,16 @@ export default function TokenDashboard() {
 												borderRadius: 8,
 												fontSize: 12,
 											}}
-											formatter={(value: number, _name: string, props: any) => [
-												value,
-												props.payload.fullName,
+											formatter={(value, _name, props) => [
+												Number(value),
+												(props as { payload?: { fullName?: string } }).payload?.fullName ?? String(_name),
 											]}
 										/>
 										<Bar dataKey="count" radius={[0, 4, 4, 0]}>
-											{toolChartData.map((_, i) => (
+											{toolChartData.map((_entry, i) => (
 												<Cell
 													key={`cell-${i}`}
-													fill={CHART_COLORS[i % CHART_COLORS.length]}
+													fill={CHART_COLORS[i % CHART_COLORS.length]!}
 												/>
 											))}
 										</Bar>
