@@ -25,8 +25,9 @@ interface ManifestServiceInput {
 	name: string;
 	category: string;
 	icon: string;
-	image: string;
-	imageTag: string;
+	image?: string;
+	imageTag?: string;
+	gitRepoUrl?: string;
 	ports?: ManifestPortInput[];
 	docsUrl?: string;
 	addedBy?: string;
@@ -109,6 +110,7 @@ export default function RegisterStackModal({ onClose, onRegistered }: RegisterSt
 						icon: s.icon,
 						image: s.image,
 						imageTag: s.imageTag,
+						gitRepoUrl: s.gitRepoUrl,
 						ports: (s.ports ?? []).map((p) => ({
 							container: typeof p.container === "number" ? p.container : Number(p.container) || 0,
 							host:

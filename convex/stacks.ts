@@ -86,8 +86,9 @@ export const registerStack = mutation({
 				name: v.string(),
 				category: v.string(),
 				icon: v.string(),
-				image: v.string(),
-				imageTag: v.string(),
+				image: v.optional(v.string()),
+				imageTag: v.optional(v.string()),
+				gitRepoUrl: v.optional(v.string()),
 				ports: v.array(
 					v.object({
 						container: v.number(),
@@ -142,6 +143,7 @@ export const registerStack = mutation({
 				icon: svc.icon,
 				image: svc.image,
 				imageTag: svc.imageTag,
+				gitRepoUrl: svc.gitRepoUrl,
 				ports: svc.ports,
 				docsUrl: svc.docsUrl,
 				addedBy: svc.addedBy,

@@ -106,8 +106,8 @@ export function useGatewaySocket(): UseGatewaySocketReturn {
 	const [errorHelp, setErrorHelp] = useState<string | null>(null);
 
 	const wsRef = useRef<WebSocket | null>(null);
-	const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
-	const pingIntervalRef = useRef<ReturnType<typeof setInterval>>();
+	const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+	const pingIntervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 	const reconnectAttemptsRef = useRef(0);
 	const manualDisconnectRef = useRef(false);
 	const nonRetryableRef = useRef<string | null>(null);

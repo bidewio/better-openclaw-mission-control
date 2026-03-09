@@ -40,6 +40,10 @@ RUN pnpm install --frozen-lockfile || pnpm install
 # Copy source
 COPY . .
 
+# Generate Convex type definitions (convex/_generated/) from schema
+# This ensures types are always available even if _generated/ is gitignored
+RUN npx convex codegen
+
 # Push Convex functions to self-hosted backend (schema + server functions)
 # This step deploys your convex/ directory to the running Convex backend
 RUN if [ -n "$CONVEX_SELF_HOSTED_URL" ] && [ -n "$CONVEX_SELF_HOSTED_ADMIN_KEY" ]; then \

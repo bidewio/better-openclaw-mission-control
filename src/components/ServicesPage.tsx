@@ -138,8 +138,12 @@ function ServiceCard({ service, onClick }: { service: Doc<"stackServices">; onCl
 					<span className="text-lg">{service.icon}</span>
 					<div>
 						<span className="font-medium text-foreground text-sm">{service.name}</span>
-						<p className="text-xs text-muted-foreground font-mono">
-							{service.image}:{service.imageTag}
+						<p className="text-xs text-muted-foreground font-mono truncate max-w-[180px]">
+							{service.image
+								? `${service.image}:${service.imageTag ?? "latest"}`
+								: service.gitRepoUrl
+									? service.gitRepoUrl.replace("https://github.com/", "").replace(".git", "")
+									: service.serviceId}
 						</p>
 					</div>
 				</div>

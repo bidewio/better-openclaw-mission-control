@@ -44,8 +44,12 @@ export default function ServiceDetailModal({ service, onClose }: ServiceDetailMo
 						<span className="text-xl">{service.icon}</span>
 						<div>
 							<h2 className="text-lg font-semibold text-foreground">{service.name}</h2>
-							<p className="text-xs text-muted-foreground">
-								{service.image}:{service.imageTag}
+							<p className="text-xs text-muted-foreground font-mono">
+								{service.image
+									? `${service.image}:${service.imageTag ?? "latest"}`
+									: service.gitRepoUrl
+										? service.gitRepoUrl.replace("https://github.com/", "").replace(".git", "")
+										: service.serviceId}
 							</p>
 						</div>
 					</div>
@@ -88,6 +92,12 @@ export default function ServiceDetailModal({ service, onClose }: ServiceDetailMo
 								}
 							>
 								{service.status ?? "unknown"}
+							</span>
+						</div>
+						<div>
+							<span className="text-xs text-muted-foreground block">Source</span>
+							<span className="text-foreground text-xs font-mono">
+								{service.image ? "Docker Image" : service.gitRepoUrl ? "Git Repository" : "Unknown"}
 							</span>
 						</div>
 					</div>

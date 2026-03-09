@@ -31,7 +31,7 @@ export const WEBHOOK_EVENT_MAP: Record<string, string> = {
  * Pure math — works in any environment (browser or server).
  */
 export function nextRetryDelay(attempt: number): number {
-	const base = BACKOFF_SECONDS[Math.min(attempt, BACKOFF_SECONDS.length - 1)];
+	const base = BACKOFF_SECONDS[Math.min(attempt, BACKOFF_SECONDS.length - 1)] ?? 30;
 	const jitter = base * 0.2 * (2 * Math.random() - 1); // ±20%
 	return Math.round(base + jitter);
 }
