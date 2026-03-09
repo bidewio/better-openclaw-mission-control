@@ -10,14 +10,21 @@
 
 import type * as agents from "../agents.js";
 import type * as auth from "../auth.js";
+import type * as chat from "../chat.js";
+import type * as claudeSessions from "../claudeSessions.js";
+import type * as compliance from "../compliance.js";
 import type * as documents from "../documents.js";
+import type * as fleet from "../fleet.js";
 import type * as http from "../http.js";
 import type * as lib_tenant from "../lib/tenant.js";
 import type * as messages from "../messages.js";
+import type * as observability from "../observability.js";
 import type * as openclaw from "../openclaw.js";
 import type * as queries from "../queries.js";
+import type * as search from "../search.js";
 import type * as seed from "../seed.js";
 import type * as stacks from "../stacks.js";
+import type * as standup from "../standup.js";
 import type * as tasks from "../tasks.js";
 
 import type { ApiFromModules, FilterApi, FunctionReference } from "convex/server";
@@ -25,14 +32,21 @@ import type { ApiFromModules, FilterApi, FunctionReference } from "convex/server
 declare const fullApi: ApiFromModules<{
 	agents: typeof agents;
 	auth: typeof auth;
+	chat: typeof chat;
+	claudeSessions: typeof claudeSessions;
+	compliance: typeof compliance;
 	documents: typeof documents;
+	fleet: typeof fleet;
 	http: typeof http;
 	"lib/tenant": typeof lib_tenant;
 	messages: typeof messages;
+	observability: typeof observability;
 	openclaw: typeof openclaw;
 	queries: typeof queries;
+	search: typeof search;
 	seed: typeof seed;
 	stacks: typeof stacks;
+	standup: typeof standup;
 	tasks: typeof tasks;
 }>;
 
