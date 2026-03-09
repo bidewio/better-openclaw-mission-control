@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+.github
+.vscode
+.env
+.env.*
+*.log
+*.md
+!README.md
+.turbo
+coverage
+.DS_Store
+Thumbs.db

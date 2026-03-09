@@ -9,6 +9,7 @@ import {
 	IconNetwork,
 	IconPlugConnected,
 	IconReport,
+	IconSearch,
 	IconServer,
 	IconShieldCheck,
 	IconSparkles,
@@ -34,6 +35,7 @@ interface HeaderProps {
 	onOpenAgents: () => void;
 	onOpenLiveFeed: () => void;
 	onOpenClawRecipes: () => void;
+	onOpenSearch: () => void;
 	activeView: ActiveView;
 	onChangeView: (view: ActiveView) => void;
 }
@@ -56,6 +58,7 @@ export default function Header({
 	onOpenAgents,
 	onOpenLiveFeed,
 	onOpenClawRecipes,
+	onOpenSearch,
 	activeView,
 	onChangeView,
 }: HeaderProps) {
@@ -101,6 +104,18 @@ export default function Header({
 			</div>
 
 			<div className="flex items-center gap-4">
+				<button
+					type="button"
+					className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground bg-secondary/50 hover:bg-secondary rounded-lg transition-colors"
+					onClick={onOpenSearch}
+					aria-label="Search"
+				>
+					<IconSearch size={16} />
+					<span className="text-xs">Search</span>
+					<kbd className="ml-1 text-[10px] px-1.5 py-0.5 bg-background rounded border border-border/50">
+						Ctrl+K
+					</kbd>
+				</button>
 				<button
 					type="button"
 					className="hidden md:flex p-2 hover:bg-accent rounded-lg items-center gap-2 text-muted-foreground transition-colors"
