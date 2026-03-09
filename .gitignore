@@ -3,4 +3,3 @@
 node_modules
 .turbo
 dist
-convex/_generated/*
