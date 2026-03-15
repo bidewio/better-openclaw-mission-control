@@ -14,11 +14,12 @@ import MissionQueue from "./components/MissionQueue";
 import ObservabilityPage from "./components/ObservabilityPage";
 import RegisterStackModal from "./components/RegisterStackModal";
 import RightSidebar from "./components/RightSidebar";
+import SandboxesPage from "./components/SandboxesPage";
+import SearchOverlay from "./components/SearchOverlay";
 import ServicesPage from "./components/ServicesPage";
 import SessionsPage from "./components/SessionsPage";
 import SignInForm from "./components/SignIn";
 import SkillsPage from "./components/SkillsPage";
-import SearchOverlay from "./components/SearchOverlay";
 import StandupPanel from "./components/StandupPanel";
 import TaskDetailPanel from "./components/TaskDetailPanel";
 import TokenDashboard from "./components/TokenDashboard";
@@ -281,6 +282,13 @@ export default function App() {
 					{activeView === "standup" && (
 						<div style={{ gridArea: "main" }}>
 							<StandupPanel />
+						</div>
+					)}
+
+					{/* Sandboxes view */}
+					{activeView === "sandboxes" && (
+						<div style={{ gridArea: "main" }}>
+							<SandboxesPage />
 						</div>
 					)}
 				</main>
